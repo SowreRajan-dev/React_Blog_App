@@ -24,7 +24,7 @@ function Sidebar() {
           <li className="sidebarListItem">Cinema</li>
         </ul>
       </div>
-      <div className="sidebarItem">
+      <div className="sidebarItem1">
         <span className="sidebarTitle">FOLLOW US</span>
         <div className="sidebarSocial">
           <i className="sideBarIcon fab fa-facebook-square"></i>
