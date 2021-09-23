@@ -1,6 +1,8 @@
 import React from "react";
 import "./Topbar.css";
+import { Link } from "react-router-dom";
 function Topbar() {
+  const user = false;
   return (
     <div className="top">
       <div className="top-left">
@@ -11,16 +13,41 @@ function Topbar() {
       </div>
       <div className="top-center">
         <ul className="topList">
-          <li className="topListItem">Home</li>
-          <li className="topListItem">About</li>
-          <li className="topListItem">Contact</li>
-          <li className="topListItem">Write</li>
-          <li className="topListItem">Logout</li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              HOME
+            </Link>
+          </li>
+          <li className="topListItem">ABOUT</li>
+          <li className="topListItem">CONTACT</li>
+
+          <li className="topListItem">
+            <Link className="link" to="/write">
+              WRITE
+            </Link>
+          </li>
+          {user && <li className="topListItem">LOGOUT</li>}
         </ul>
       </div>
       <div className="top-right">
-        <img src="/Images/userImg.png" alt="" className="topImg" />
-        <i class="topSearchIcon fas fa-search"></i>
+        {user ? (
+          <Link className="link" to="/settings">
+            <img src="/Images/userImg.png" alt="" className="topImg" />
+          </Link>
+        ) : (
+          <ul className="topList">
+            <li className="topListItem">
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/register">
+                REGISTER
+              </Link>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );
