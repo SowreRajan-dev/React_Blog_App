@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Topbar.css";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 function Topbar() {
-  const user = false;
+  const { user } = useContext(Context);
   return (
     <div className="top">
       <div className="top-left">

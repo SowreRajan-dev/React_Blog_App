@@ -36,7 +36,10 @@
 .loginInput:focus {
   outline: none;
 }
-
+.loginButton:disabled {
+  cursor: not-allowed;
+  background-color: rgb(253, 166, 166);
+}
 .loginButton {
   margin-top: 20px;
   cursor: pointer;
@@ -50,12 +53,13 @@
 
 .loginRegisterButton {
   position: absolute;
+  color: white;
   top: 60px;
   right: 20px;
-  background-color: teal;
+  background-color: coral;
   cursor: pointer;
   padding: 10px;
   border: none;
-  color: white;
+
   border-radius: 10px;
 }
