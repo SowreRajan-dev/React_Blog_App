@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import "./SinglePosts.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
 function SinglePosts() {
+  const location = useLocation();
+  const postId = location.pathname.split("/")[2];
+  const [post, setPost] = useState({});
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("/posts/" + postId);
+      setPost(res.data);
+    };
+    getPost();
+  }, [postId]);
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img src="/Images/singlePostImg.jpg" alt="" className="singlePostIng" />
+        {post.photo && (
+          <img src={post.photo} alt="" className="singlePostIng" />
+        )}
         <h1 className="singlePostTitle">
-          Lorem ipsum dolor sit amet{" "}
+          {post.title}
           <div className="singlePostEdit">
             <i className="singlePostIcon fas fa-edit"></i>
             <i className="singlePostIcon far fa-trash-alt"></i>
@@ -14,45 +29,16 @@ function SinglePosts() {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author: <b>Name</b>
+            Author:
+            <Link to={`/?user=${post.username}`} className="link">
+              <b>{post.username}</b>
+            </Link>
           </span>
-          <span className="singlePostDate">1 hour ago</span>
+          <span className="singlePostDate">
+            {new Date(post.createdAt).toDateString()}
+          </span>
         </div>
-        <p className="singlePostDesc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quis
-          amet id non cumque, voluptatum quaerat ex excepturi voluptates
-          sapiente obcaecati necessitatibus sed dignissimos reprehenderit
-          molestias, quae, aperiam nemo dicta! Illo, ex omnis! Veniam quidem
-          recusandae laudantium enim nihil officiis eos pariatur officia earum
-          explicabo labore iusto sequi repellendus reiciendis, at qui magnam
-          provident consequuntur culpa assumenda. Assumenda, facilis
-          dignissimos. Eos saepe, nobis illum molestiae porro dolores dolore
-          error in. Qui praesentium totam sunt tempora numquam eveniet
-          repellendus corporis maiores quidem. Consequatur, praesentium
-          repellendus? Aspernatur laborum eaque provident numquam consequuntur!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quis
-          amet id non cumque, voluptatum quaerat ex excepturi voluptates
-          sapiente obcaecati necessitatibus sed dignissimos reprehenderit
-          molestias, quae, aperiam nemo dicta! Illo, ex omnis! Veniam quidem
-          recusandae laudantium enim nihil officiis eos pariatur officia earum
-          explicabo labore iusto sequi repellendus reiciendis, at qui magnam
-          provident consequuntur culpa assumenda. Assumenda, facilis
-          dignissimos. Eos saepe, nobis illum molestiae porro dolores dolore
-          error in. Qui praesentium totam sunt tempora numquam eveniet
-          repellendus corporis maiores quidem. Consequatur, praesentium
-          repellendus? Aspernatur laborum eaque provident numquam consequuntur!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quis
-          amet id non cumque, voluptatum quaerat ex excepturi voluptates
-          sapiente obcaecati necessitatibus sed dignissimos reprehenderit
-          molestias, quae, aperiam nemo dicta! Illo, ex omnis! Veniam quidem
-          recusandae laudantium enim nihil officiis eos pariatur officia earum
-          explicabo labore iusto sequi repellendus reiciendis, at qui magnam
-          provident consequuntur culpa assumenda. Assumenda, facilis
-          dignissimos. Eos saepe, nobis illum molestiae porro dolores dolore
-          error in. Qui praesentium totam sunt tempora numquam eveniet
-          repellendus corporis maiores quidem. Consequatur, praesentium
-          repellendus? Aspernatur laborum eaque provident numquam consequuntur!
-        </p>
+        <p className="singlePostDesc">{post.desc}</p>
       </div>
     </div>
   );
