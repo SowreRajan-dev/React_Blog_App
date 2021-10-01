@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const multer = require("multer");
 const cors = require("cors");
+const path = require("path");
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
@@ -39,6 +40,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/category", categoryRoute);
+app.use("/images", express.static(path.join(__dirname, "/images")));
+
 app.listen(5000, () => {
   console.log("Listening on port 5000");
 });
