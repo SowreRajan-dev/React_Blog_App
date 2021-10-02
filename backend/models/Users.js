@@ -22,6 +22,7 @@ const UserSchema = new mongoose.Schema(
     },
     userDescription: {
       type: String,
+      default: "",
     },
   },
   { timestamps: true }

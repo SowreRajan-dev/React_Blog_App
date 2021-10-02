@@ -6,10 +6,13 @@ import SinglePost from "./Components/pages/SinglePost/SinglePost";
 import Write from "./Components/pages/Write/Write";
 import Topbar from "./Components/topbar/Topbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "./context/Context";
 function App() {
   const { user } = useContext(Context);
+  useEffect(() => {
+    document.title = "BlogB";
+  });
   return (
     <div className="App">
       <Router>

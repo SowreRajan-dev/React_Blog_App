@@ -6,6 +6,7 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userDesc, setUserDesc] = useState("");
   const [err, setErr] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +16,7 @@ function Register() {
         username,
         email,
         password,
+        userDesc,
       });
       res.data && window.location.replace("/login");
     } catch (err) {
@@ -46,6 +48,13 @@ function Register() {
           type="password"
           placeholder="Enter your password..."
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <label htmlFor="">Bio</label>
+        <textarea
+          className="registerInput"
+          type="text"
+          placeholder="share about your self...."
+          onChange={(e) => setUserDesc(e.target.value)}
         />
         <button className="registerButton">Register</button>
       </form>

@@ -38,13 +38,14 @@ function Settings() {
       const res = await axios.put(`/users/${user._id}`, updatedUser);
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+      dispatch({ type: "LOGIN_FAILURE" });
+      window.location.replace("/login");
     } catch (err) {
       dispatch({ type: "UPDATE_FAILURE" });
 
       console.log("error in user", err);
     }
   };
-  console.log("user", user);
   return (
     <div className="settings">
       <div className="settingsWrapper">

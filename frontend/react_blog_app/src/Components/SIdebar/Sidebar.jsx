@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 import "./Sidebar.css";
 function Sidebar() {
   const [cat, setCat] = useState([]);
+  const { user } = useContext(Context);
+
   useEffect(() => {
     const getCats = async () => {
       const res = await axios.get("/category");
@@ -17,21 +20,14 @@ function Sidebar() {
       <div className="sidebarItem">
         <span className="sidebarTitle">ABOUT ME</span>
         <img className="sidebarAboutImg" src="/Images/aboutmePic.jpg" alt="" />
-        <p className="sideBarAboutContent">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto porro
-          recusandae reiciendis saepe possimus soluta aperiam nostrum dolores.
-          Inventore optio est molestias voluptatem commodi suscipit quas nemo
-          aliquid repudiandae repellendus!
-        </p>
+        <p className="sideBarAboutContent">{user.userDescription}</p>
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
           {cat.map((cat) => (
-            <Link to={`/?cat=${cat.name}`} className="link">
-              <li className="sidebarListItem" key={cat._id}>
-                {cat.name}
-              </li>
+            <Link to={`/?cat=${cat.name}`} key={cat._id} className="link">
+              <li className="sidebarListItem">{cat.name}</li>
             </Link>
           ))}
         </ul>
@@ -41,8 +37,8 @@ function Sidebar() {
         <div className="sidebarSocial">
           <i className="sideBarIcon fab fa-facebook-square"></i>
           <i className="sideBarIcon fab fa-twitter-square"></i>
-          <i class="sideBarIcon fab fa-instagram"></i>
-          <i class="sideBarIcon fab fa-pinterest-square"></i>
+          <i className="sideBarIcon fab fa-instagram"></i>
+          <i className="sideBarIcon fab fa-pinterest-square"></i>
         </div>
       </div>
     </div>
