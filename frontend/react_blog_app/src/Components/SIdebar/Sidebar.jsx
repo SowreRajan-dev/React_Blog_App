@@ -20,7 +20,7 @@ function Sidebar() {
       <div className="sidebarItem">
         <span className="sidebarTitle">ABOUT ME</span>
         <img className="sidebarAboutImg" src="/Images/aboutmePic.jpg" alt="" />
-        <p className="sideBarAboutContent">{user.userDescription}</p>
+        {user && <p className="sideBarAboutContent">{user.userDescription}</p>}
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>

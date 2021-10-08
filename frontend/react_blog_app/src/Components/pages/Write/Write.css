@@ -56,3 +56,21 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+@media only screen and (max-width: 600px) {
+  .write {
+    width: 100%;
+    position: relative;
+  }
+  .writeFormGroup {
+    position: relative;
+    margin: 0;
+    /* left: 50px; */
+  }
+  .writeImg {
+    margin-left: 10%;
+  }
+  .writeIcon {
+    margin-left: 20px;
+  }
+}

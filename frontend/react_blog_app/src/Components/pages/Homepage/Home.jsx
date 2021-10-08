@@ -16,7 +16,7 @@ function Home() {
     fetchPost();
   }, [search]);
   return (
-    <div>
+    <div className="homePage">
       <Header />
       <div className="home">
         <Posts posts={posts} />

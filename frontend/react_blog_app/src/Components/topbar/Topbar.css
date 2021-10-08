@@ -55,3 +55,89 @@
   text-decoration: none;
   color: #444;
 }
+.navBar {
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  .top {
+    width: 600px;
+    max-width: 600px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  .top-center {
+    display: none;
+  }
+
+  .listStyle {
+    list-style: none;
+  }
+  .menu-item {
+    color: white;
+    margin-top: 20px;
+  }
+  .navBar {
+    display: block;
+    position: relative;
+  }
+  .navBarUl {
+    margin-top: 80px;
+    position: relative;
+  }
+  .navbutton {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: black;
+    border: none;
+    background: transparent;
+  }
+  .menuNotNav li {
+    display: none;
+  }
+  .menuNav {
+    overflow-y: scroll;
+    list-style: none;
+    position: fixed;
+    top: 0;
+    background: darkcyan;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 0;
+    overflow: hidden;
+    max-width: 290px;
+    z-index: 9;
+  }
+  .menuNav.showMenu {
+    width: 100%;
+    height: 100vh;
+    transition: all 2s;
+  }
+  .menuNotNav .notShowMenu {
+    transition: all 1s;
+  }
+  .menuNav li {
+    position: relative;
+    top: 20%;
+    left: 30%;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .linked {
+    list-style: none;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .topList {
+    position: absolute;
+    right: 110px;
+  }
+}

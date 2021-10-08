@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { FiMenu } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
 import "./Topbar.css";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
@@ -9,8 +11,45 @@ function Topbar() {
   const handleLogOut = () => {
     dispatch({ type: "LOGOUT" });
   };
+
+  const [navbarOpen, setNavBarOpen] = useState(false);
+  const handleToggle = () => {
+    setNavBarOpen(!navbarOpen);
+  };
+  // const closeMenu = () => {
+  //   setNavBarOpen(false);
+  // };
   return (
     <div className="top">
+      <nav className="navBar">
+        <ul
+          className={`${navbarOpen ? "menuNav" : "menuNotNav"} ${
+            navbarOpen ? "showMenu" : "notShowMenu"
+          }`}
+        >
+          <button className="navbutton" onClick={handleToggle}>
+            {navbarOpen ? <MdClose /> : <FiMenu />}
+          </button>
+          <li className="">
+            <Link className="linked" to="/">
+              HOME
+            </Link>
+          </li>
+          <li className="">ABOUT</li>
+          <li className="">CONTACT</li>
+
+          <li className="">
+            <Link className="linked" to="/write">
+              WRITE
+            </Link>
+          </li>
+          {user && (
+            <li className="linked" onClick={handleLogOut}>
+              LOGOUT
+            </li>
+          )}
+        </ul>
+      </nav>
       <div className="top-left">
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fab fa-twitter-square"></i>
